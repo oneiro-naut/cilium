@@ -95,7 +95,7 @@ jobs:
 
       - name: Install eksctl CLI
         run: |
-          curl -LO "https://github.com/weaveworks/eksctl/releases/download/0.44.0/eksctl_Linux_amd64.tar.gz"
+          curl -LO "https://github.com/weaveworks/eksctl/releases/download/0.52.0/eksctl_Linux_amd64.tar.gz"
           sudo tar xzvfC eksctl_$(uname -s)_amd64.tar.gz /usr/bin
           rm eksctl_$(uname -s)_amd64.tar.gz
 
@@ -111,7 +111,8 @@ jobs:
           eksctl create cluster \
             --name ${{ env.clusterName }} \
             --tags "usage=${{ github.repository_owner }}-${{ github.event.repository.name }},owner=${{ steps.vars.outputs.owner }}" \
-            --without-nodegroup
+            --without-nodegroup \
+            --version 1.18
 
       - name: Update AWS VPC CNI plugin
         run: |
