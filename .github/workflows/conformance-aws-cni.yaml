@@ -112,7 +112,7 @@ jobs:
             --name ${{ env.clusterName }} \
             --tags "usage=${{ github.repository_owner }}-${{ github.event.repository.name }},owner=${{ steps.vars.outputs.owner }}" \
             --without-nodegroup \
-            --version 1.18
+            --version 1.20
 
       - name: Update AWS VPC CNI plugin
         run: |
