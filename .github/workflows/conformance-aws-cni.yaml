@@ -112,7 +112,7 @@ jobs:
             --name ${{ env.clusterName }} \
             --tags "usage=${{ github.repository_owner }}-${{ github.event.repository.name }},owner=${{ steps.vars.outputs.owner }}" \
             --without-nodegroup \
-            --version 1.20
+            --version 1.18
 
       - name: Update AWS VPC CNI plugin
         run: |
@@ -176,11 +176,7 @@ jobs:
 
       - name: Run connectivity test
         run: |
-          cd cilium-master
-          kubectl create -f examples/kubernetes/connectivity-check/connectivity-check.yaml
-          sleep 5m
-          kubectl get pods
-          exit 1
+          cilium connectivity test
 
       - name: Clean up Cilium
         run: |
